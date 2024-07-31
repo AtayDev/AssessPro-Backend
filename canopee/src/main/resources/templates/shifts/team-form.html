@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create Team</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1 class="mb-4">Create Team</h1>
+            <form th:action="@{/Shifts/processTeamForm}" th:object="${team}" method="POST">
+                <div class="form-group">
+                    <label for="id">Team ID</label>
+                    <input type="number" id="id" name="id" placeholder="Team ID" th:field="*{id}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="manager">Manager</label>
+                    <select id="manager" th:field="*{manager}" class="form-control" required>
+                        <option th:each="manager : ${managers}" th:value="${manager.id}" th:text="${manager.fname} + ' ' + ${manager.lname}">Select Manager</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

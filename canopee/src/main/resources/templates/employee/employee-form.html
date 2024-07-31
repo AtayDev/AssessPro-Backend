@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Employee form</title>
+    </head>
+    <body>
+        <form th:action="@{/processEmployeeForm}" th:object="${employee}" method="POST">
+            <input type="text" name="fname" placeholder="First Name" th:field = "*{fname}"/><br>
+            <input type="text" name="lname" placeholder="Last Name" th:field = "*{lname}"/><br>
+            <select th:field="*{country}">
+                <option th:value="Brazil">Brazil</option>
+                <option th:value="USA">USA</option>
+                <option th:value="France">France</option>
+            </select>
+            <br>
+
+            <input type="radio" id="html" name="fav_language" value="HTML" th:field = "*{favoritePLanguage}">
+            <label for="html">HTML</label><br>
+            <input type="radio" id="css" name="fav_language" value="CSS" th:field = "*{favoritePLanguage}">
+            <label for="css">CSS</label><br>
+            <input type="radio" id="javascript" name="fav_language" value="JavaScript" th:field = "*{favoritePLanguage}">
+            <label for="javascript">JavaScript</label><br>
+
+             <!--We can insert this option dyanmically using applications.properties and th:each-->
+            <input type="checkbox" value="Linux" th:field="*{favoriteOS}"><span>Linux</span>
+            <input type="checkbox" value="Mac" th:field="*{favoriteOS}"><span>Mac</span>
+            <input type="checkbox" value="Sun" th:field="*{favoriteOS}"><span>Sun</span><br>
+
+            <input type="submit" value="add"/><br>
+        </form>
+    </body>
+</html>

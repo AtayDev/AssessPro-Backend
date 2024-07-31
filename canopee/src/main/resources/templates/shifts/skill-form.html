@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Skill Form</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1 class="mb-4">Skill Form</h1>
+            <form th:action="@{/Shifts/processSkillForm}" th:object="${skill}" method="post">
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" th:field="*{id}" class="form-control" readonly="readonly"/>
+                </div>
+                <div class="form-group">
+                    <label for="label">Label:</label>
+                    <input type="text" id="label" th:field="*{label}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" th:field="*{description}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="modeEvaluation">Mode Evaluation:</label>
+                    <select id="modeEvaluation" th:field="*{modeEvaluation}" class="form-control">
+                        <option th:each="modeEval : ${modeEvaluations}" th:value="${modeEval.id}" th:text="${modeEval.label}">Mode Evaluation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </body>
+</html>

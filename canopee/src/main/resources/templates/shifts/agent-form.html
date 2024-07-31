@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create Team</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1 class="mb-4">Create Team</h1>
+            <form th:action="@{/Shifts/processAgentForm}" th:object="${agent}" method="POST">
+                <div class="form-group">
+                    <label for="id">Agent ID</label>
+                    <input type="text" id="id" name="id" placeholder="Agent ID" th:field="*{id}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="fname" placeholder="Agent ID" th:field="*{fname}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lname" placeholder="Agent ID" th:field="*{lname}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Agent ID" th:field="*{email}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="speed">Speed</label>
+                    <input type="number" id="speed" name="speed" placeholder="Enter Speed" th:field="*{speed}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="physique">Physique</label>
+                    <input type="number" id="physique" name="physique" placeholder="Enter Physique" th:field="*{physique}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="theory">Theory</label>
+                    <input type="number" id="theory" name="theory" placeholder="Enter Theory" th:field="*{theory}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="stressManagement">Stress Management</label>
+                    <input type="number" id="stressManagement" name="stressManagement" placeholder="Enter Stress Management" th:field="*{stressManagement}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="communication">Communication</label>
+                    <input type="number" id="communication" name="communication" placeholder="Enter Communication" th:field="*{communication}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="team">Teams</label>
+                    <select id="team" th:field="*{team}" class="form-control">
+                        <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.id}">Select Team</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

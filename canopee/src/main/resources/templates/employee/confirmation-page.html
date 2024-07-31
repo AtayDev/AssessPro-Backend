@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Confirmation Page</title>
+    </head>
+    <body>
+        <h1>The employee below was registered successfully: </h1>
+        <span>First Name: </span><p th:text="${employee.fname}" />
+        <span>Last Name: </span><p th:text="${employee.lname}" />
+        <span>Country: </span><p th:text="${employee.country}" />
+        <span>Favorite Programming Language : </span><p th:text="${employee.favoritePLanguage}" />
+        <div>Favorite Systems: </div>
+        <ul>
+            <li th:each="os : ${employee.favoriteOS}" th:text="${os}"></li>
+        </ul>
+
+
+    </body>
+</html>
