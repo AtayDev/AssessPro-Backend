@@ -1,26 +1,33 @@
 package com.jabran.canopee.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import java.util.*;
 
 @Entity
 public class Agent {
 
+    public enum Fonction {
+        OPPT, OP, OPF, CC, DSE, CED, AGT, CE
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String fname;
     private String lname;
     private String email;
+    private Fonction fonction;
 
-    private int speed;
-    private int physique;
-    private int theory;
-    private int stressManagement;
-    private int communication;
+
+    @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("agent-evaluations")
+    private List<Evaluation> evaluations;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
-    @JsonBackReference
+    @JsonBackReference("team-agents")
     private Team team;
 
     public Agent() {
@@ -38,6 +45,15 @@ public class Agent {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
+        this.team = team;
+    }
+
+    public Agent(int id, String fname, String lname, String email, Fonction fonction, Team team) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.fonction = fonction;
         this.team = team;
     }
 
@@ -81,43 +97,19 @@ public class Agent {
         this.team = team;
     }
 
-    public int getSpeed() {
-        return speed;
+    public Fonction getFonction() {
+        return fonction;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setFonction(Fonction fonction) {
+        this.fonction = fonction;
     }
 
-    public int getPhysique() {
-        return physique;
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
     }
 
-    public void setPhysique(int physique) {
-        this.physique = physique;
-    }
-
-    public int getTheory() {
-        return theory;
-    }
-
-    public void setTheory(int theory) {
-        this.theory = theory;
-    }
-
-    public int getStressManagement() {
-        return stressManagement;
-    }
-
-    public void setStressManagement(int stressManagement) {
-        this.stressManagement = stressManagement;
-    }
-
-    public int getCommunication() {
-        return communication;
-    }
-
-    public void setCommunication(int communication) {
-        this.communication = communication;
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
     }
 }

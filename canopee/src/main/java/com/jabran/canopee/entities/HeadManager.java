@@ -15,7 +15,7 @@ public class HeadManager {
     private String email;
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("headManager-teams")
     private List<Team> teams;
 
     public HeadManager() {

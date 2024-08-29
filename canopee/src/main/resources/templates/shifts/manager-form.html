@@ -11,6 +11,10 @@
             <h1 class="mb-4">Create Manager</h1>
             <form th:action="@{/Shifts/processManagerForm}" th:object="${manager}" method="POST">
                 <div class="form-group">
+                    <label for="id">First Name</label>
+                    <input type="text" id="id" name="id" placeholder="" th:field="*{id}" class="form-control" required>
+                </div>
+                <div class="form-group">
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="fname" placeholder="" th:field="*{fname}" class="form-control" required>
                 </div>

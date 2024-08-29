@@ -40,15 +40,6 @@ public class SHIFTRestController {
         Agent agent = agentRepository.findById(id).orElse(null);
         return agent;
     }
-    @GetMapping("/Teams")
-    public List<Team> getAllTeams() {
-        return teamRepository.findAll();
-    }
-    @GetMapping("/Teams/{id}")
-    public Team getTeamById(@PathVariable int id) {
-        return teamRepository.findById(id).orElse(null);
-    }
-
 
 
 }

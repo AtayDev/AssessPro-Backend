@@ -1,6 +1,7 @@
 package com.jabran.canopee.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -13,13 +14,17 @@ public class Team {
     private int id;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("team-agents")
     private List<Agent> agents;
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
-    @JsonBackReference
+    @JsonBackReference("headManager-teams")
     private HeadManager manager;
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("team-evaluations")
+    private List<Evaluation> evaluations;
 
     public Team() {
     }
@@ -61,5 +66,13 @@ public class Team {
                 ", agents=" + agents +
                 ", manager=" + manager +
                 '}';
+    }
+
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
     }
 }
