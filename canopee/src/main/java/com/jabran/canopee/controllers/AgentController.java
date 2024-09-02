@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/shifter_api")
-@CrossOrigin(origins = "http://localhost:3000") // Adjust the allowed origin as necessary
+@CrossOrigin(origins = "${frontend.url}") // Adjust the allowed origin as necessary
 public class AgentController {
 
     TeamRepository teamRepository;
